@@ -1,13 +1,11 @@
-import React from "react";
-
 const HeroSec = () => {
   return (
     <section className="relative px-6 lg:px-12 pt-32 md:pt-40 pb-12 lg:py-24 min-h-screen flex flex-col justify-center bg-black">
       <div className="absolute inset-0 z-20 pt-20 flex items-center justify-center">
         <img
-          src="/src/assets/9e1c37d5af3664f469eb325471af83df05d764bb.png"
+          src="/9e1c37d5af3664f469eb325471af83df05d764bb.png"
           alt="Octopus"
-          className="w-auto h-[1000px] lg:h-[1100px] opacity-80 object-contain "
+          className="w-auto h-[1000px] lg:h-[1100px] opacity-80 object-contain"
         />
       </div>
 
@@ -55,10 +53,10 @@ const HeroSec = () => {
 
       <div className="relative z-30 hidden lg:flex flex-row items-center justify-between">
         <div className="w-full lg:w-3/5 text-left lg:mb-50 lg:ml-20">
-          <h1 className="text-8xl leading-tight">Note Taking</h1>
+          <h1 className="text-8xl leading-relaxed">Note Taking</h1>
         </div>
         <div className="w-full lg:w-2/5 text-right lg:pr-20">
-          <h1 className="text-8xl leading-tight">
+          <h1 className="text-8xl leading-relaxed">
             <span className="text-emerald-500">Redefined</span>
           </h1>
         </div>

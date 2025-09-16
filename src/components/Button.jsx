@@ -3,26 +3,36 @@ import { useState } from "react";
 
 const Button = () => {
   const [isPressed, setIsPressed] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleTouchStart = () => {
     setIsPressed(true);
+    setIsHovered(true);
   };
 
   const handleTouchEnd = () => {
-    setTimeout(() => setIsPressed(false), 150);
+    setTimeout(() => {
+      setIsPressed(false);
+      setIsHovered(false);
+    }, 150);
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
     setIsPressed(false);
+    setIsHovered(false);
   };
 
   return (
     <button
-      className={`relative flex items-center border border-white rounded-full font-medium overflow-hidden group bg-white text-black transition-colors duration-300 ${
-        isPressed ? "pressed" : ""
-      }`}
+      className={`relative flex items-center border border-white rounded-full font-medium overflow-hidden group bg-white text-black transition-all duration-200 
+      } ${isPressed ? "pressed scale-130" : ""}`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{
         WebkitTapHighlightColor: "transparent",

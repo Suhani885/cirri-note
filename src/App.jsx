@@ -1,6 +1,7 @@
+import { useState, useEffect } from "react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import { useState, useEffect } from "react";
+import HeroSec from "./components/HeroSec";
 
 const App = () => {
   const [navScrolled, setNavScrolled] = useState(false);
@@ -20,13 +21,13 @@ const App = () => {
     <>
       <div className="min-h-screen bg-black text-white overflow-x-hidden">
         <div
-          className={`fixed top-0 left-0 w-full bg-emerald-700 text-white py-2 overflow-hidden z-30 transition-transform duration-800 ${
+          className={`fixed top-0 left-0 w-full bg-emerald-700 text-white py-3 overflow-hidden z-30 transition-transform duration-800 ${
             navScrolled ? "-translate-y-full" : "translate-y-0"
           } hidden md:block`}
         >
           <div className="animate-marquee whitespace-nowrap flex items-center">
             <span className="text-sm font-medium flex items-center">
-              {Array.from({ length: 10 }).map((_, i) => (
+              {Array.from({ length: 100 }).map((_, i) => (
                 <span key={i} className="flex items-center font-light">
                   <span className="mx-4">Join the launch event</span>
                   <span className="text-white text-xs mx-2">♦</span>
@@ -40,38 +41,7 @@ const App = () => {
           </div>
         </div>
         <Navbar />
-        <section
-          className="relative px-6 lg:px-12 pt-32 md:pt-40 pb-12 lg:py-24 min-h-screen flex flex-col justify-center"
-          style={{
-            backgroundImage:
-              "url(https://imgcdn.stablediffusionweb.com/2024/2/23/bc9e18a5-27a3-4ce1-9bce-55e488fb3d69.jpg)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        >
-          <div className="absolute inset-0 bg-black/60 z-0"></div>
-
-          <div className="relative z-10 hidden lg:flex flex-row items-center justify-between">
-            <div className="w-full lg:w-3/5 mb-50 lg:mb-0 text-left">
-              <h1 className="text-8xl leading-tight">Note Taking</h1>
-            </div>
-            <div className="w-full lg:w-2/5 text-right lg:mt-50">
-              <h1 className="text-8xl leading-tight">
-                <span className="text-emerald-500">Redefined</span>
-              </h1>
-            </div>
-          </div>
-
-          <div className="relative z-10 flex lg:hidden flex-col items-center justify-center text-center">
-            <h1 className="text-5xl md:text-5xl leading-tight mb-4">
-              Note Taking
-            </h1>
-            <h1 className="text-5xl md:text-5xl leading-tight">
-              <span className="text-emerald-500">Redefined</span>
-            </h1>
-          </div>
-        </section>
+        <HeroSec />
 
         <section
           id="about"

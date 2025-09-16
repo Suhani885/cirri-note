@@ -20,10 +20,10 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed left-0 w-full z-20 flex items-center justify-between px-6 lg:px-12 py-5 transition-all duration-300 ${
+        className={`fixed left-0 w-full z-50 flex items-center justify-between px-6 lg:px-12 py-5 transition-all duration-300 ${
           navScrolled
-            ? "bg-black/30 backdrop-blur-sm border-b border-black/20"
-            : "bg-black/90 backdrop-blur-sm"
+            ? "bg-black/50 backdrop-blur-sm border-b border-black/20"
+            : "bg-black/90 backdrop-blur-sm mt-3"
         }`}
         style={{
           top: navScrolled ? "0" : window.innerWidth >= 768 ? "30px" : "0",

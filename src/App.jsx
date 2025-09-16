@@ -1,29 +1,13 @@
-import { useState, useEffect } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
 import Footer from "./components/Footer";
-import Button from "./components/Button";
+import Navbar from "./components/Navbar";
+import { useState, useEffect } from "react";
 
 const App = () => {
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [navScrolled, setNavScrolled] = useState(false);
-  const [selectedFeature, setSelectedFeature] = useState(null);
 
-  // Marquee text
-  const marqueeText =
-    "Join the launch event • Get one year FREE • Only for limited users •  ";
-
-  // Features array
-  const features = [
-    {
-      id: 1,
-      name: "Feature Name",
-    },
-  ];
-
-  // Add scroll event listener to update navScrolled
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
+      if (window.scrollY > 50) {
         setNavScrolled(true);
       } else {
         setNavScrolled(false);
@@ -32,127 +16,67 @@ const App = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   return (
     <>
       <div className="min-h-screen bg-black text-white overflow-x-hidden">
         <div
-          className={`bg-emerald-500 text-white py-2 overflow-hidden w-full z-50 ${
-            navScrolled ? "hidden" : ""
+          className={`fixed top-0 left-0 w-full bg-emerald-700 text-white py-2 overflow-hidden z-30 transition-transform duration-800 ${
+            navScrolled ? "-translate-y-full" : "translate-y-0"
           } hidden md:block`}
         >
-          <div className="animate-marquee whitespace-nowrap">
-            <span className="text-sm font-medium mx-4">
-              {marqueeText.repeat(10)}
+          <div className="animate-marquee whitespace-nowrap flex items-center">
+            <span className="text-sm font-medium flex items-center">
+              {Array.from({ length: 10 }).map((_, i) => (
+                <span key={i} className="flex items-center font-light">
+                  <span className="mx-4">Join the launch event</span>
+                  <span className="text-white text-xs mx-2">♦</span>
+                  <span className="mx-4">Get one year FREE</span>
+                  <span className="text-white text-xs mx-2">♦</span>
+                  <span className="mx-4">Only for limited users</span>
+                  <span className="text-white text-xs mx-2">♦</span>
+                </span>
+              ))}
             </span>
           </div>
         </div>
-
-        <nav
-          className={`fixed top-0 left-0 w-full z-20 flex items-center justify-between px-6 lg:px-12 py-6 transition-colors duration-300 ${
-            navScrolled ? "bg-black/40 backdrop-blur" : "bg-black"
-          }`}
-        >
-          <div className="flex items-center space-x-2">
-            <div className="flex items-center justify-center">
-              <span className="text-emerald-400 text-5xl font-extrabold">
-                C
-              </span>
-            </div>
-            <span className="text-2xl font-medium">CirriNote</span>
-          </div>
-
-          <div className="hidden md:flex items-center space-x-8">
-            <div className="flex items-center justify-center space-x-16">
-              <a
-                href="#about"
-                className="hover:text-emerald-400 transition-colors"
-              >
-                About
-              </a>
-              <a
-                href="#features"
-                className="hover:text-emerald-400 transition-colors"
-              >
-                Features
-              </a>
-              <a
-                href="#faqs"
-                className="hover:text-emerald-400 transition-colors"
-              >
-                FAQs
-              </a>
-              <a
-                href="#contact"
-                className="hover:text-emerald-400 transition-colors"
-              >
-                Contact
-              </a>
-            </div>
-
-            <Button />
-          </div>
-
-          <div className="md:hidden flex items-center space-x-4">
-            <Button />
-            <button
-              className="text-white focus:outline-none p-2"
-              onClick={() => setMobileNavOpen(!mobileNavOpen)}
-              aria-label="Toggle navigation"
-            >
-              {mobileNavOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </nav>
-
-        {mobileNavOpen && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black z-[60] flex flex-col items-center justify-center space-y-8 text-2xl md:hidden">
-            <a
-              href="#about"
-              className="hover:text-emerald-400 transition-colors"
-              onClick={() => setMobileNavOpen(false)}
-            >
-              About
-            </a>
-            <a
-              href="#features"
-              className="hover:text-emerald-400 transition-colors"
-              onClick={() => setMobileNavOpen(false)}
-            >
-              Features
-            </a>
-            <a
-              href="#faqs"
-              className="hover:text-emerald-400 transition-colors"
-              onClick={() => setMobileNavOpen(false)}
-            >
-              FAQs
-            </a>
-            <a
-              href="#contact"
-              className="hover:text-emerald-400 transition-colors"
-              onClick={() => setMobileNavOpen(false)}
-            >
-              Contact
-            </a>
-          </div>
-        )}
-
+        <Navbar />
         <section
-          id="about"
-          className="px-6 lg:px-12 pt-24 pb-12 lg:py-24 min-h-screen flex flex-col justify-center"
+          className="relative px-6 lg:px-12 pt-32 md:pt-40 pb-12 lg:py-24 min-h-screen flex flex-col justify-center"
+          style={{
+            backgroundImage:
+              "url(https://imgcdn.stablediffusionweb.com/2024/2/23/bc9e18a5-27a3-4ce1-9bce-55e488fb3d69.jpg)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
         >
-          <div className="flex flex-col lg:flex-row items-center justify-between">
-            <div className="w-full lg:w-1/2 mb-12 lg:mb-0 text-center lg:text-left">
-              <h1 className="text-4xl md:text-5xl lg:text-7xl mb-8 leading-tight">
-                Note Taking <br />
-                <span className="text-emerald-400">Redefined</span>
+          <div className="absolute inset-0 bg-black/60 z-0"></div>
+
+          <div className="relative z-10 hidden lg:flex flex-row items-center justify-between">
+            <div className="w-full lg:w-3/5 mb-50 lg:mb-0 text-left">
+              <h1 className="text-8xl leading-tight">Note Taking</h1>
+            </div>
+            <div className="w-full lg:w-2/5 text-right lg:mt-50">
+              <h1 className="text-8xl leading-tight">
+                <span className="text-emerald-500">Redefined</span>
               </h1>
             </div>
           </div>
+
+          <div className="relative z-10 flex lg:hidden flex-col items-center justify-center text-center">
+            <h1 className="text-5xl md:text-5xl leading-tight mb-4">
+              Note Taking
+            </h1>
+            <h1 className="text-5xl md:text-5xl leading-tight">
+              <span className="text-emerald-500">Redefined</span>
+            </h1>
+          </div>
         </section>
 
-        <section className="px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center items-center text-center bg-neutral-900">
+        <section
+          id="about"
+          className="px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center items-center text-center bg-neutral-900"
+        >
           <h1 className="text-4xl lg:text-6xl mb-16 font-light text-white leading-tight">
             An extraordinary note
             <br />
@@ -161,55 +85,23 @@ const App = () => {
 
           <div className="flex justify-center mb-20">
             <svg
-              width="120"
-              height="120"
-              viewBox="0 0 120 120"
+              width="160"
+              height="160"
+              viewBox="0 0 160 160"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <rect
-                x="30"
-                y="20"
-                width="60"
-                height="80"
-                rx="8"
-                stroke="#10B981"
-                strokeWidth="2"
-                fill="none"
+              <path
+                d="M85.8667 46.78L117.693 55.2533M79.0533 72.0866L94.96 76.3267M79.8467 119.773L86.2067 121.473C104.207 126.273 113.207 128.667 120.3 124.593C127.387 120.527 129.8 111.573 134.62 93.68L141.44 68.3666C146.267 50.4667 148.673 41.52 144.58 34.4666C140.487 27.4133 131.493 25.02 113.487 20.2266L107.127 18.5266C89.1267 13.7266 80.1267 11.3333 73.04 15.4066C65.9467 19.4733 63.5333 28.4266 58.7067 46.32L51.8933 71.6333C47.0667 89.5333 44.6533 98.48 48.7533 105.533C52.8467 112.58 61.8467 114.98 79.8467 119.773Z"
+                stroke="#00BB77"
+                stroke-width="4"
+                stroke-linecap="round"
               />
-              <rect
-                x="20"
-                y="30"
-                width="60"
-                height="80"
-                rx="8"
-                stroke="#10B981"
-                strokeWidth="2"
-                fill="none"
-              />
-              <line
-                x1="35"
-                y1="45"
-                x2="55"
-                y2="45"
-                stroke="#10B981"
-                strokeWidth="2"
-              />
-              <line
-                x1="35"
-                y1="55"
-                x2="65"
-                y2="55"
-                stroke="#10B981"
-                strokeWidth="2"
-              />
-              <line
-                x1="35"
-                y1="65"
-                x2="60"
-                y2="65"
-                stroke="#10B981"
-                strokeWidth="2"
+              <path
+                d="M80 139.64L73.6533 141.373C55.6933 146.26 46.72 148.707 39.64 144.553C32.5733 140.407 30.16 131.28 25.3533 113.033L18.5467 87.22C13.7333 68.9734 11.3267 59.8467 15.4133 52.66C18.9467 46.44 26.6667 46.6667 36.6667 46.6667"
+                stroke="#00BB77"
+                stroke-width="4"
+                stroke-linecap="round"
               />
             </svg>
           </div>
@@ -221,78 +113,220 @@ const App = () => {
           </p>
         </section>
 
-        <section id="features" className="px-6 lg:px-12 py-24">
-          <div className="mb-12">
+        <section id="features" className="px-6 lg:px-12 py-28 mb-30">
+          <div className="mb-12 px-4">
             <span className="bg-emerald-500 text-black px-4 py-2 rounded-full text-sm font-medium">
               Whats the best
             </span>
             <h2 className="text-4xl lg:text-6xl mt-8 mb-6">Key Features</h2>
             <p className="text-zinc-400 font-light text-lg max-w-2xl">
-              We're proud to announce with the features
+              We're proud to announce the features
               <br />
               that empower creatives every day.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div
-                key={feature.id}
-                className={`bg-gray-900 rounded-2xl p-8 cursor-pointer transition-all duration-300 hover:scale-105 ${
-                  selectedFeature === feature.id
-                    ? "border-2 border-emerald-400 bg-gray-800"
-                    : "border border-gray-700"
-                } ${index === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}
-                onClick={() =>
-                  setSelectedFeature(
-                    selectedFeature === feature.id ? null : feature.id
-                  )
-                }
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <h3
-                    className={`text-2xl font-bold transition-colors duration-300 ${
-                      selectedFeature === feature.id
-                        ? "text-emerald-400"
-                        : "text-white"
-                    }`}
-                  >
-                    {feature.name}
-                  </h3>
-                  <div
-                    className={`transition-all duration-300 ${
-                      selectedFeature === feature.id
-                        ? "rotate-45 text-emerald-400"
-                        : "text-gray-400"
-                    }`}
-                  >
-                    <ArrowUpRight size={24} />
+          <div className="bg-black py-8 min-h-screen flex items-center justify-center">
+            <div className=" w-full flex flex-wrap">
+              <div className="w-1/3 px-2">
+                <div className="bg-[#1c1c1c] h-[18rem] w-full rounded-2xl p-8 flex items-end justify-start aspect-square hover:bg-black hover:border-green-400 border-2 border-transparent transition-all duration-300 ease-in-out cursor-pointer group relative">
+                  <p className="text-gray-300 text-3xl pb-6 group-hover:text-white group-hover:ml-3 transition-all duration-300">
+                    Feature <br /> Name
+                  </p>
+                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out group-hover:scale-310 p-6">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="text-green-400"
+                    >
+                      <path
+                        d="M7 17L17 7M17 7H7M17 7V17"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </div>
                 </div>
-
-                {selectedFeature === feature.id && (
-                  <div className="animate-fadeIn">
-                    <p className="text-gray-300 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                )}
               </div>
-            ))}
-          </div>
 
-          <div className="mt-16 text-center">
-            <h3 className="text-3xl lg:text-5xl font-bold mb-8 text-gray-300">
-              Creative people worldwide rely
-              <br />
-              on this app to craft ideas
-              <br />
-              into <span className="text-emerald-400">digital magic.</span>
-            </h3>
+              <div className="w-1/3 px-2">
+                <div className=" rounded-2xl p-8 h-[18rem] w-full flex items-end justify-start aspect-square bg-black border-2 border-transparent transition-all duration-300 ease-in-out cursor-pointer group relative">
+                  <p className="text-gray-300 text-2xl font-semibold group-hover:text-white transition-colors duration-300"></p>
+                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out group-hover:scale-110"></div>
+                </div>
+              </div>
+
+              <div className="w-1/3 px-2">
+                <div className="bg-[#1c1c1c] h-[18rem] w-full rounded-2xl p-8 flex items-end justify-start aspect-square hover:bg-black hover:border-green-400 border-2 border-transparent transition-all duration-300 ease-in-out cursor-pointer group relative">
+                  <p className="text-gray-300 text-3xl pb-6 group-hover:text-white group-hover:ml-3 transition-all duration-300">
+                    Feature <br /> Name
+                  </p>
+                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out group-hover:scale-310 p-6">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="text-green-400"
+                    >
+                      <path
+                        d="M7 17L17 7M17 7H7M17 7V17"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-1/3 px-2">
+                <div className=" rounded-2xl p-8 h-[18rem] w-full flex items-end justify-start aspect-square bg-black border-2 border-transparent transition-all duration-300 ease-in-out cursor-pointer group relative">
+                  <p className="text-gray-300 text-2xl font-semibold group-hover:text-white transition-colors duration-300"></p>
+                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out group-hover:scale-110"></div>
+                </div>
+              </div>
+
+              <div className="w-1/3 px-2">
+                <div className="bg-[#1c1c1c] h-[18rem] w-full rounded-2xl p-8 flex items-end justify-start aspect-square hover:bg-black hover:border-green-400 border-2 border-transparent transition-all duration-300 ease-in-out cursor-pointer group relative">
+                  <p className="text-gray-300 text-3xl pb-6 group-hover:text-white group-hover:ml-3 transition-all  duration-300">
+                    Feature <br />
+                    Name
+                  </p>
+                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out group-hover:scale-310 p-6">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="text-green-400"
+                    >
+                      <path
+                        d="M7 17L17 7M17 7H7M17 7V17"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-1/3 px-2">
+                <div className=" rounded-2xl h-[18rem] w-full p-8 flex items-end justify-start aspect-square bg-black border-2 border-transparent transition-all duration-300 ease-in-out cursor-pointer group relative">
+                  <p className="text-gray-300 text-2xl font-semibold group-hover:text-white transition-colors duration-300"></p>
+                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out group-hover:scale-110"></div>
+                </div>
+              </div>
+
+              <div className="w-2/3 px-2">
+                <div className="mt-16 justify-start ml-12">
+                  <h3 className="text-3xl lg:text-5xl font-light mb-8 text-neutral-500">
+                    Creative people worldwide rely
+                    <br />
+                    on this app to craft ideas
+                    <br />
+                    into{" "}
+                    <span className="text-emerald-400">digital magic.</span>
+                  </h3>
+                </div>
+              </div>
+
+              <div className="w-1/3 px-2">
+                <div className="bg-[#1c1c1c] h-[18rem] w-full rounded-2xl p-8 flex items-end justify-start aspect-square hover:bg-black hover:border-green-400 border-2 border-transparent transition-all duration-300 ease-in-out cursor-pointer group relative">
+                  <p className="text-gray-300 pb-6 text-3xl group-hover:text-white group-hover:ml-3 transition-all duration-300">
+                    Feature <br /> Name
+                  </p>
+                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out group-hover:scale-310 p-6">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="text-green-400"
+                    >
+                      <path
+                        d="M7 17L17 7M17 7H7M17 7V17"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-1/3 px-2">
+                <div className="bg-[#1c1c1c] h-[18rem] w-full rounded-2xl p-8 flex items-end justify-start aspect-square hover:bg-black hover:border-green-400 border-2 border-transparent transition-all duration-300 ease-in-out cursor-pointer group relative">
+                  <p className="text-gray-300 text-3xl pb-6 group-hover:text-white group-hover:ml-3 transition-all  duration-300">
+                    Feature <br />
+                    Name
+                  </p>
+                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out group-hover:scale-310 p-6">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="text-green-400"
+                    >
+                      <path
+                        d="M7 17L17 7M17 7H7M17 7V17"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-1/3 px-2">
+                <div className="bg-[#1c1c1c] h-[18rem] w-full rounded-2xl p-8 flex items-end justify-start aspect-square hover:bg-black hover:border-green-400 border-2 border-transparent transition-all duration-300 ease-in-out cursor-pointer group relative">
+                  <p className="text-gray-300 text-3xl pb-6 group-hover:text-white group-hover:ml-3 transition-all  duration-300">
+                    Feature <br />
+                    Name
+                  </p>
+                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out group-hover:scale-310 p-6">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="text-green-400"
+                    >
+                      <path
+                        d="M7 17L17 7M17 7H7M17 7V17"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-1/3 px-2">
+                <div className="rounded-2xl h-[18rem] w-full p-8 flex items-end justify-start aspect-square bg-black border-2 border-transparent transition-all duration-300 ease-in-out cursor-pointer group relative">
+                  <p className="text-gray-300 text-2xl font-semibold group-hover:text-white transition-colors duration-300"></p>
+                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out group-hover:scale-110"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
+
         <Footer />
       </div>
+
       <style jsx>{`
         @keyframes marquee {
           0% {
@@ -304,6 +338,20 @@ const App = () => {
         }
         .animate-marquee {
           animation: marquee 30s linear infinite;
+        }
+
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out;
         }
       `}</style>
     </>

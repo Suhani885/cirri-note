@@ -1,12 +1,34 @@
-import { Linkedin, Instagram } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Button from "./Button";
+import { useState, useEffect } from "react";
 
-const Footer = () => {
+const Navbar = () => {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [navScrolled, setNavScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setNavScrolled(true);
+      } else {
+        setNavScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <footer
-      id="contact"
-      className="bg-zinc-950 px-6 lg:px-12 py-20 border-t border-zinc-800"
-    >
-      <div className="hidden md:flex items-center justify-between">
+    <>
+      <nav
+        className={`fixed left-0 w-full z-20 flex items-center justify-between px-6 lg:px-12 py-5 transition-all duration-300 ${
+          navScrolled
+            ? "bg-black/30 backdrop-blur-sm border-b border-black/20"
+            : "bg-black/90 backdrop-blur-sm"
+        }`}
+        style={{
+          top: navScrolled ? "0" : window.innerWidth >= 768 ? "30px" : "0",
+        }}
+      >
         <svg
           width="170"
           height="44"
@@ -67,62 +89,84 @@ const Footer = () => {
           </defs>
         </svg>
 
-        <div className="flex items-center space-x-8">
-          <a
-            href="#"
-            className="text-white hover:text-emerald-400 transition-colors"
-          >
-            <Linkedin size={24} />
-          </a>
-          <a
-            href="#"
-            className="text-white hover:text-emerald-400 transition-colors"
-          >
-            <Instagram size={24} />
-          </a>
-          <a
-            href="#"
-            className="text-white hover:text-emerald-400 transition-colors"
-          >
-            <span className="text-xl font-bold">𝕏</span>
-          </a>
-        </div>
-      </div>
-
-      <div className="md:hidden flex flex-col items-center text-center space-y-8">
-        <div className="flex items-center space-x-2">
-          <div className="flex items-center justify-center">
-            <span className="text-emerald-400 text-5xl font-extrabold">C</span>
+        <div className="hidden md:flex flex-1 items-center justify-center">
+          <div className="flex items-center justify-center space-x-16">
+            <a
+              href="#about"
+              className="hover:text-emerald-400 transition-colors"
+            >
+              About
+            </a>
+            <a
+              href="#features"
+              className="hover:text-emerald-400 transition-colors"
+            >
+              Features
+            </a>
+            <a
+              href="#faqs"
+              className="hover:text-emerald-400 transition-colors"
+            >
+              FAQs
+            </a>
+            <a
+              href="#contact"
+              className="hover:text-emerald-400 transition-colors"
+            >
+              Contact
+            </a>
           </div>
-          <span className="text-2xl font-medium">CirriNote</span>
         </div>
-        <div className="flex items-center space-x-8">
-          <a
-            href="#"
-            className="text-white hover:text-emerald-400 transition-colors"
+        <div className="hidden md:flex items-center">
+          <Button />
+        </div>
+
+        <div className="md:hidden flex items-center space-x-4">
+          <Button />
+          <button
+            className="text-white focus:outline-none p-2"
+            onClick={() => setMobileNavOpen(!mobileNavOpen)}
+            aria-label="Toggle navigation"
           >
-            <Linkedin size={28} />
+            {mobileNavOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </nav>
+
+      {mobileNavOpen && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black z-40 flex flex-col items-center justify-center space-y-8 text-2xl md:hidden">
+          <a
+            href="#about"
+            className="hover:text-emerald-400 transition-colors"
+            onClick={() => setMobileNavOpen(false)}
+          >
+            About
           </a>
           <a
-            href="#"
-            className="text-white hover:text-emerald-400 transition-colors"
+            href="#features"
+            className="hover:text-emerald-400 transition-colors"
+            onClick={() => setMobileNavOpen(false)}
           >
-            <Instagram size={28} />
+            Features
           </a>
           <a
-            href="#"
-            className="text-white hover:text-emerald-400 transition-colors"
+            href="#faqs"
+            className="hover:text-emerald-400 transition-colors"
+            onClick={() => setMobileNavOpen(false)}
           >
-            <span className="text-2xl font-bold">𝕏</span>
+            FAQs
+          </a>
+          <a
+            href="#contact"
+            className="hover:text-emerald-400 transition-colors"
+            onClick={() => setMobileNavOpen(false)}
+          >
+            Contact
           </a>
         </div>
-      </div>
-      <div className="pt-16 flex flex-col items-start md:flex-row md:items-center md:justify-between text-gray-400 text-sm space-y-2 md:space-y-0">
-        <p className="font-light">© CirriNote 2025</p>
-        <p className="font-light">Crafted with passion by CreoWis</p>
-      </div>
-    </footer>
+      )}
+    </>
   );
 };
 
-export default Footer;
+export default Navbar;

@@ -30,6 +30,7 @@ const Navbar = () => {
         }}
       >
         <svg
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           width="170"
           height="44"
           viewBox="0 0 170 44"

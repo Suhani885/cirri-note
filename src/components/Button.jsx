@@ -29,7 +29,7 @@ const Button = () => {
   return (
     <button
       className={`relative flex items-center border border-white rounded-full font-medium overflow-hidden group bg-white text-black transition-all duration-200 
-      } ${isPressed ? "pressed scale-130" : ""}`}
+      } ${isPressed ? "pressed scale-120" : ""}`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onMouseEnter={handleMouseEnter}

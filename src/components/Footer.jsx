@@ -89,7 +89,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="md:hidden flex flex-col items-center text-center space-y-8">
+      <div className="md:hidden flex flex-col space-y-8">
         <svg
           width="170"
           height="44"
@@ -149,7 +149,7 @@ const Footer = () => {
             </clipPath>
           </defs>
         </svg>
-        <div className="flex items-center space-x-8">
+        <div className="flex space-x-8">
           <a
             href="#"
             className="text-white hover:text-emerald-400 transition-colors"

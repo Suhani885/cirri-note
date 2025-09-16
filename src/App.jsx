@@ -304,13 +304,13 @@ const App = () => {
                   {[...Array(6)].map((_, index) => (
                     <div
                       key={index}
-                      className="bg-neutral-800 h-80 rounded-3xl p-8 flex items-end justify-start border-2 border-transparent cursor-pointer relative flex-shrink-0 touch-manipulation hover:bg-black hover:border-green-400 active:bg-black active:border-green-400 group transition-all duration-300 ease-in-out"
+                      className="bg-[#1c1c1c] h-80 rounded-3xl p-8 flex items-end justify-start border-2 border-transparent cursor-pointer relative flex-shrink-0 touch-manipulation hover:bg-black hover:border-green-400 active:bg-black active:border-green-400 group transition-all duration-300 ease-in-out"
                       style={{ width: "320px", minWidth: "320px" }}
                     >
-                      <p className="text-gray-400 text-4xl font-light leading-tight transition-all duration-300 group-hover:ml-3 group-hover:text-white group-active:ml-3 group-active:text-white ">
+                      <p className="text-gray-300 text-4xl font-light leading-tight transition-all duration-300 group-hover:ml-3 group-hover:text-white group-active:ml-3 group-active:text-white ">
                         Feature <br /> Name
                       </p>
-                      <div className="absolute top-8 right-8 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110 group-active:opacity-100 group-active:scale-110">
+                      <div className="absolute top-8 right-8 opacity-0 transition-all duration-300 group-active:opacity-100 group-active:scale-350">
                         <svg
                           width="40"
                           height="40"

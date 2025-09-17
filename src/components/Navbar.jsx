@@ -122,7 +122,7 @@ const Navbar = () => {
           <Button />
         </div>
 
-        <div className="md:hidden flex items-center space-x-4">
+        <div className="md:hidden flex items-center space-x-4 mr-20">
           <Button />
           <button
             className="text-white focus:outline-none p-2"

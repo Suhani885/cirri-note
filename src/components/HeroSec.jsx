@@ -1,14 +1,13 @@
 const HeroSec = () => {
   return (
     <section className="relative px-6 lg:px-12 pt-32 md:pt-40 pb-12 lg:py-24 min-h-screen flex flex-col justify-center bg-black">
-      <div className="absolute inset-0 z-20 pt-20 flex items-center justify-center">
+      <div className="absolute bottom-0 right-0 z-20 lg:inset-0 lg:pt-20 lg:flex lg:items-center lg:justify-center">
         <img
           src="/9e1c37d5af3664f469eb325471af83df05d764bb.png"
           alt="Octopus"
-          className="w-auto h-[1000px] lg:h-[1100px] opacity-80 object-contain"
+          className="w-auto h-[80vh] ml-10 lg:h-[1100px] opacity-80 object-right lg:object-center translate-x-8 lg:translate-x-0"
         />
       </div>
-
       <div className="absolute inset-0 z-10">
         <svg
           width="100%"
@@ -53,7 +52,7 @@ const HeroSec = () => {
 
       <div className="relative z-30 hidden lg:flex flex-row items-center justify-between">
         <div className="w-full lg:w-3/5 text-left lg:mb-50 lg:ml-20">
-          <h1 className="text-8xl leading-relaxed">Note Taking</h1>
+          <h1 className="text-8xl leading-relaxed text-white">Note Taking</h1>
         </div>
         <div className="w-full lg:w-2/5 text-right lg:pr-20">
           <h1 className="text-8xl leading-relaxed">
@@ -62,9 +61,9 @@ const HeroSec = () => {
         </div>
       </div>
 
-      <div className="relative z-20 flex lg:hidden flex-col items-center justify-center text-center">
-        <h1 className="text-5xl md:text-5xl leading-tight mb-4">Note Taking</h1>
-        <h1 className="text-5xl md:text-5xl leading-tight">
+      <div className="absolute w-full top-30 left-1/2 transform -translate-x-1/2 z-30 flex lg:hidden flex-col items-center text-center">
+        <h1 className="text-6xl leading-relaxed text-white ">Note Taking</h1>
+        <h1 className="text-6xl leading-relaxed">
           <span className="text-emerald-500">Redefined</span>
         </h1>
       </div>

@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer
       id="contact"
-      className="bg-zinc-950 px-6 lg:px-12 py-20 border-t border-zinc-800"
+      className="bg-zinc-950 px-6 lg:px-12 py-20 border-t border-zinc-800 z-30 relative"
     >
       <div className="hidden md:flex items-center justify-between">
         <svg
